@@ -121,7 +121,7 @@ namespace MagicGuiEditor {
 				ClientAPI.ShowChatMessage($"\t{config.refs[i]}");
 			}
 		}
-		
+
 		// get all the references and types that are needed to recompile and redirect the methods
 		private void LoadTypes() {
 			if (config.namespacedTypeName == "")
@@ -197,7 +197,7 @@ namespace MagicGuiEditor {
 			}
 			newGuiType = result.CompiledAssembly.GetType(config.namespacedTypeName);
 		}
-		
+
 		private void InitCompiler() {
 			param = new CompilerParameters() {
 				GenerateExecutable = false,
@@ -213,7 +213,8 @@ namespace MagicGuiEditor {
 			};
 			// just add every lib, who gives a shit.
 			foreach (var file in Directory.GetFiles("Lib")) {
-				param.ReferencedAssemblies.Add(file);
+				if (Path.HasExtension("dll"))
+					param.ReferencedAssemblies.Add(file);
 			}
 			param.ReferencedAssemblies.AddRange(config.refs);
 			provider = new CSharpCodeProvider();

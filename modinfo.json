@@ -4,7 +4,7 @@
   "description": "Reload GUIs as you work on them!",
   "authors": [ "VeryGoodDog" ],
   "contributors": [],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "side": "Client",
   "website": ""
 }
