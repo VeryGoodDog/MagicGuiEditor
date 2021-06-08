@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{2BFD3C38-2410-403E-A1FC-A7A91A47579E}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <RootNamespace>MagicGuiEditor</RootNamespace>
+        <AssemblyName>MagicGuiEditor</AssemblyName>
+        <TargetFramework>net480</TargetFramework>
+        <LangVersion>8.0</LangVersion>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <VintageStoryInstall>\home\ah\Documents\devStuff\vintagestory\vsdevdirs\cm</VintageStoryInstall>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+    </PropertyGroup>
+    <Target Name="CustomAfterBuild" AfterTargets="Build">
+        <MakeDir Directories="$(VintageStoryInstall)\Mods\$(AssemblyName)" />
+        <Exec Command="cp -r $(OutputPath)* $(VintageStoryInstall)/Mods/$(AssemblyName)" />
+    </Target>
+    <ItemGroup>
+        <Reference Include="VintagestoryAPI">
+            <HintPath>\home\ah\ApplicationData\vintagestory\VintagestoryAPI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="VintagestoryLib">
+            <HintPath>\home\ah\ApplicationData\vintagestory\VintagestoryLib.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="VSCreativeMod">
+            <HintPath>\home\ah\ApplicationData\vintagestory\Mods\VSCreativeMod.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="VSEssentials">
+            <HintPath>\home\ah\ApplicationData\vintagestory\Mods\VSEssentials.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="VSSurvivalMod">
+            <HintPath>\home\ah\ApplicationData\vintagestory\Mods\VSSurvivalMod.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Harmony">
+            <HintPath>\home\ah\ApplicationData\vintagestory\Lib\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.JSON">
+            <HintPath>\home\ah\ApplicationData\vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="modinfo.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>
